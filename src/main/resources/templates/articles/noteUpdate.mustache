@@ -1,0 +1,30 @@
+
+<!--네비게이션-->
+{{>layouts/header}}
+{{#posts}}
+
+<form class="container" action="/articles/updateAction" method="post">
+    <div class="mb-3 mt-4">
+        <label class="form-label">제목</label>
+        <input type="text" class="form-control" name="title" value="{{title}}">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">내용</label>
+        <textarea class="form-control" rows="3" name="content">{{content}}</textarea>
+    </div>
+<!--    숨김-->
+    <div class="mb-3 ">
+        <label class="form-label">아이디,시간</label>
+        <textarea class="form-control" rows="3" name="id">{{id}}</textarea>
+    </div>
+    <div class="mb-3 ">
+        <label class="form-label">아이디,시간</label>
+<!--    <textarea class="form-control" rows="3" name="timestamp">{{timestamp}}</textarea>-->
+    </div>
+        <!--    숨김-->
+    <button type="submit" class="btn btn-primary ">수정</button>
+</form>
+
+{{/posts}}
+
+{{>layouts/footer}}
