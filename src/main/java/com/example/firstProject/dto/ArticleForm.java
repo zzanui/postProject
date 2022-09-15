@@ -25,8 +25,8 @@ public class ArticleForm {
 
 
     public Article toEntity() {
-        return new Article(null, title, content,name,null);
+        return new Article(null, title, content,name,null,0);
     }
-    public Article toUpdateEntity(){return new Article(id, title, content,name,null);}
+    public Article toUpdateEntity(){return new Article(id, title, content,name,null,0);}
 
 }

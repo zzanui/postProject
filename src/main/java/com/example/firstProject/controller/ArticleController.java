@@ -19,8 +19,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.transaction.Transactional;
-import java.util.List;
-import java.util.Optional;
 
 
 @Controller
@@ -90,6 +88,8 @@ public class ArticleController {
     @GetMapping("/articles/read/{id}")//게시판 상세조회
     public String read(@PathVariable Long id, Model model){
         //회원정보를 model에 저장
+        articleRepository.updateView(id);
+
         model.addAttribute("posts" ,articleRepository.findById(id).get());//가져와서 .get을 안붙이면 사용이 안되요 ㅠㅠ
         log.info(articleRepository.findById(id).toString());
         return "/articles/read";
