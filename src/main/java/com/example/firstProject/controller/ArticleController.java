@@ -2,6 +2,7 @@ package com.example.firstProject.controller;
 
 import com.example.firstProject.dto.ArticleForm;
 import com.example.firstProject.entity.Article;
+import com.example.firstProject.entity.User;
 import com.example.firstProject.repository.ArticleRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -51,21 +52,10 @@ public class ArticleController {
         model.addAttribute("hasPrev", list.hasPrevious());//이전 페이지 여부
         return "articles/note";
     }
-
-    @GetMapping("/articles/login")
-    public String newLoginForm(){
-        return "/articles/login";
-    }
-
-    @GetMapping("/articles/join")
-    public String newJoinForm(){
-        return "/articles/join";
-    }
-
-    @GetMapping("/articles/read")
-    public String newReadForm(){
-        return "/articles/read";
-    }
+//    @GetMapping("/articles/read")
+//    public String newReadForm(){
+//        return "/articles/read";
+//    }
 
 
 
@@ -77,6 +67,13 @@ public class ArticleController {
         Article article = form.toEntity();
 //        log.info(article.toString());
         if (article.getTitle() != null && article.getContent() != null){//제목,콘텐츠가 비어있지 않을 경우
+
+            System.out.println("1");
+            Article te = form.toEntity();
+            System.out.println("\n"+(form.toString())+"\n");
+            System.out.println("2");
+
+
             //리포지토리한테 엔티티를 DB에 저장하게 함
             Article saved = articleRepository.save(article);
 //        log.info(saved.toString());
