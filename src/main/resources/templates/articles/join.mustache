@@ -1,20 +1,24 @@
 
 <!--네비게이션-->
 {{>layouts/header}}
-<div class="container ">
-<form class="row g-3  mt-4" action="/articles/joinProc" method="post" >
+<div class="container">
+<form class="row g-3  mt-4" action="/articles/joinProc" method="post" modelAttribute="userDto">
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
 
     <div class="col-12">
         <label for="username" class="form-label">아이디</label>
         <input type="text" class="form-control" name="username">
+        {{#valid_username}} <span id="valid" class="text-danger">{{valid_username}}</span> {{/valid_username}}
     </div>
     <div class="col-md-6">
         <label for="password" class="form-label">비밀번호</label>
         <input type="password" class="form-control" name="password">
+        {{#valid_password}} <span id="valid" class="text-danger">{{valid_password}}</span> {{/valid_password}}
     </div>
     <div class="col-12">
         <label for="email" class="form-label">Email</label>
         <input type="email" class="form-control" name="email">
+        {{#valid_email}} <span id="valid" class="text-danger">{{valid_email}}</span> {{/valid_email}}
     </div>
 
 <!--    <div class="col-md-6">-->
@@ -25,6 +29,7 @@
     <div class="col-12">
         <label for="nickname" class="form-label">닉네임</label>
         <input type="text" class="form-control" name="nickname">
+        {{#valid_nickname}} <span id="valid" class="text-danger">{{valid_nickname}}</span> {{/valid_nickname}}
     </div>
     <div class="col-12 mt-4">
         <button type="submit" class="btn btn-dark">회원가입</button>
