@@ -18,6 +18,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -75,7 +76,14 @@ public class UserController {
     }
 
     @GetMapping("/articles/login")
-    public String login() {
+    public String login(@RequestParam(value = "error",required = false)String error,
+                        @RequestParam(value = "exception",required = false)String exception,
+                        Model model) {
+        model.addAttribute("error",error);
+        System.out.println(error);
+        model.addAttribute("exception",exception);
+        System.out.println(exception);
+
         return "/articles/login";
     }
 
@@ -91,7 +99,7 @@ public class UserController {
         User loginUser = userService.loginService(userDto);
 
 
-        if (loginUser == null) {//계정이 존재하지 않을경우
+        if (loginUser == null) {//계정이 존재하지 않을경우//로그인 실패
             bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
             return "/articles/login";//로그인페이지로 이동
         }
