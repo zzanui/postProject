@@ -1,6 +1,7 @@
 package com.example.firstProject.service;
 
 import com.example.firstProject.dto.UserDto;
+import com.example.firstProject.dto.UserRequestDto;
 import com.example.firstProject.entity.User;
 import com.example.firstProject.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -83,7 +84,16 @@ public class UserService {
         }
     }
 
+    /* 회원수정 (dirty checking) */
+    @Transactional
+    public void modify(UserRequestDto dto) {
 
+        User user = userRepository.findById(dto.toEntity().getId().toString()//이거 제대로 확인 해야될듯?
+        ).orElseThrow(() -> new IllegalArgumentException("해당 회원이 존재하지 않습니다."));
+
+        String encPassword = encoder.encode(dto.getPassword());
+        user.modify(dto.getNickname(), encPassword);
+    }
 
 
 

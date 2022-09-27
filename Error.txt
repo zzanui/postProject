@@ -9,3 +9,6 @@
 
 4.
 ☆csrf에 대해 알아보자☆
+
+
+22.09.26 modifiedDate가 addAttribute에 안들어간다 이걸 들어가게 하고 시작하자

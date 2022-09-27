@@ -1,6 +1,8 @@
 package com.example.firstProject.controller;
 
+import com.example.firstProject.annotation.LoginUser;
 import com.example.firstProject.dto.UserDto;
+import com.example.firstProject.dto.UserSessionDto;
 import com.example.firstProject.service.UserService;
 import com.example.firstProject.entity.User;
 import com.example.firstProject.validate.CheckEmailValidator;
@@ -75,20 +77,20 @@ public class UserController {
         return "redirect:/articles/login";
     }
 
-    @GetMapping("/articles/login")
-    public String login(@RequestParam(value = "error",required = false)String error,
-                        @RequestParam(value = "exception",required = false)String exception,
+    @GetMapping("/articles/login")//로그인
+    public String login(@RequestParam(value = "error", required = false) String error,
+                        @RequestParam(value = "exception", required = false) String exception,
                         Model model) {
-        model.addAttribute("error",error);
+        model.addAttribute("error", error);
         System.out.println(error);
-        model.addAttribute("exception",exception);
+        model.addAttribute("exception", exception);
         System.out.println(exception);
 
         return "/articles/login";
     }
 
 
-    @PostMapping("/articles/LoginAction")//로그인//끝까지 다 안됨
+    @PostMapping("/articles/LoginAction")//로그인액션
     public String SignUpAction(UserDto userDto, BindingResult bindingResult, HttpSession session) {
 
 
@@ -97,10 +99,11 @@ public class UserController {
         }
         //아이디랑 비밀번호을 찾아 select 실행
         User loginUser = userService.loginService(userDto);
-
+        System.out.println("LoginAction");
 
         if (loginUser == null) {//계정이 존재하지 않을경우//로그인 실패
             bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
+            System.out.println("아이디 또는 비밀번호가 맞지 않습니다.");
             return "/articles/login";//로그인페이지로 이동
         }
 
@@ -108,7 +111,7 @@ public class UserController {
 
         //쿠키에 시간 정보를 주지 않으면 세션 쿠기(브라우저 종료시 모두 종료)
         session.setAttribute("user", userDto);
-
+        System.out.println("로그인 성공.");
         return "redirect:/";//메인화면으로 이동
     }
 
@@ -121,7 +124,22 @@ public class UserController {
         return "redirect:/";
     }
 
+    /* 회원정보 수정 */
+    @GetMapping("/articles/user-modify")
+    public String modify(@LoginUser UserSessionDto userDto, Model model) {
+        System.out.println(userDto.toString());
+        if (userDto != null) {
+            model.addAttribute("userID", userDto.getNickname());
+            model.addAttribute("userDto", userDto);
+
+            System.out.println(userDto.getModifiedDate());
+
+            System.out.println(userDto.toString());
+        }
+        return "/articles/user-modify";
+    }
 }
+
 
 
 

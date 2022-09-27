@@ -15,11 +15,14 @@ public class UserSessionDto implements Serializable {
     private Role role;
     /* Entity -> Dto */
 
+    private String modifiedDate;//회원정보 수정 시 수정 날짜를 업데이트
+
     public UserSessionDto(User user) {
         this.username = user.getUsername();
         this.password = user.getPassword();
         this.nickname = user.getNickname();
         this.email = user.getEmail();
         this.role = user.getRole();
+        this.modifiedDate = user.getModifiedDate();
     }
 }
