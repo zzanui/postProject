@@ -18,14 +18,16 @@ public abstract class TimeEntity {
     private String createdDate;
     @Column(name = "modified_date")
     @LastModifiedDate
-    private String modifiedDate;     /* 해당 엔티티를 저장하기 이전에 실행 */
+    private String modifiedDate;
 
+    /* 해당 엔티티를 저장하기 이전에 실행 */
     @PrePersist
     public void onPrePersist() {
         this.createdDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd"));
         this.modifiedDate = this.createdDate;
-    }     /* 해당 엔티티를 업데이트 하기 이전에 실행*/
+    }
 
+    /* 해당 엔티티를 업데이트 하기 이전에 실행*/
     @PreUpdate
     public void onPreUpdate() {
         this.modifiedDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm"));

@@ -36,6 +36,17 @@ public class User extends TimeEntity {
         this.nickname = nickname;
         this.password = password;
     }
+
+    /* 소셜로그인시 이미 등록된 회원이라면 수정날짜만 업데이트하고     * 기존 데이터는 그대로 보존하도록 예외처리 */
+    public User updateModifiedDate() {
+        this.onPreUpdate();
+        return this;
+    }
+
+    public String getRoleValue() {
+        return this.role.getValue();
+    }
+
 }
 
 
