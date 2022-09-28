@@ -115,7 +115,7 @@ public class UserController {
         return "redirect:/";//메인화면으로 이동
     }
 
-    @GetMapping("/logout")
+    @GetMapping("/articles/logout")/* 로그아웃 */
     public String logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null) {

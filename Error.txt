@@ -10,6 +10,12 @@
 4.네이버 로그인 진행 중 "서비스 설정에 오류가 있어 네이버 아이디로 로그인할 수 없습니다." 라는 로고와 함께 접근조차 안되는 상황 발생
 ☆csrf에 대해 알아보자☆
 
+5. 로그인을 시도하게 되면 로그인 자체는 되지만 "{"timestamp":"2022-09-28T14:37:10.600+00:00","status":999,"error":"None"}"과 같은 코드가 웹페이지에 표시된다.
+    해결 :구글링 결과 파비콘이 없어서 나는 에러로 추정 정적리소스 무시 패턴에
+    "web.ignoring().antMatchers("/favicon.ico", "/resources/**", "/error");"
+    를 작성해주면 해결
+5: 출처 https://stackoverflow.com/questions/61029340/spring-security-redirects-to-page-with-status-code-999/61029341
+
 
 22.09.26 modifiedDate가 addAttribute에 안들어간다 이걸 들어가게 하고 시작하자
 22.09.28 로그인하면 게시판 글이 안보임

@@ -87,14 +87,16 @@ public class ArticleController {
     @GetMapping("/articles/read/{id}")//게시판 상세조회
     public String read(@PathVariable Long id, @LoginUser UserSessionDto user, Model model){
 
-        Article article =articleRepository.findById(id).get();
+        Article article =articleRepository.findById(id).get();//가져와서 .get을 안붙이면 사용이 안되요 ㅠㅠ
+        if (user != null) {
+            model.addAttribute("usernickname", user.getNickname());
 
-
-        if (article.getUsername().equals(user.getUsername())){
-            model.addAttribute("writer",true);
+            if (article.getUsername().equals(user.getUsername())){
+                model.addAttribute("writer",true);
+            }
         }
 
-        model.addAttribute("posts" ,article);//가져와서 .get을 안붙이면 사용이 안되요 ㅠㅠ
+        model.addAttribute("posts" ,article);
         log.info(articleRepository.findById(id).toString());
 
         articleRepository.updateView(id);//조회수 증가
