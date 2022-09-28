@@ -23,12 +23,15 @@ public class Article {
     private Long id;
 
     @Column
+    private String  username;
+
+    @Column
     private String title;
     @Column
     private String content;
 
-    @Column
-    private String nickName;
+    @Column(name = "nickname")
+    private String nickname;
 
     @Column
 //  @CreationTimestamp //컬럼 생성시

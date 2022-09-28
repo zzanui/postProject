@@ -2,6 +2,7 @@ package com.example.firstProject.dto;
 
 import com.example.firstProject.entity.Article;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.ToString;
 
 
@@ -12,12 +13,13 @@ import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @ToString
+@Builder
 public class ArticleForm {
 
-
+    private String  username;
     private String title;
     private  String content;
-    private String name;
+    private String nickname;
     private Long id;
 
     private LocalDateTime timestamp;
@@ -25,8 +27,33 @@ public class ArticleForm {
 
 
     public Article toEntity() {
-        return new Article(null, title, content,name,null,0);
+
+        Article article = Article.builder()
+                .id(id)
+                .title(title)
+                .content(content)
+                .username(username)
+                .nickname(nickname)
+                .timestamp(null)
+                .view(0)
+                .build();
+
+        return article;
+//        return new Article(null, title, content,username,nickName,null,0);
     }
-    public Article toUpdateEntity(){return new Article(id, title, content,name,null,0);}
+//    public Article toUpdateEntity() {
+//        Article article = Article.builder()
+//                .id(id)
+//                .title(title)
+//                .content(content)
+//                .username(username)
+//                .nickname(nickname)
+//                .timestamp(null)
+//                .view(0)
+//                .build();
+//        return article;
+//        return new Article(id, title, content,username,nickname,null,0);
+//      }
+
 
 }

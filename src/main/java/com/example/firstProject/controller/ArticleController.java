@@ -1,6 +1,8 @@
 package com.example.firstProject.controller;
 
+import com.example.firstProject.annotation.LoginUser;
 import com.example.firstProject.dto.ArticleForm;
+import com.example.firstProject.dto.UserSessionDto;
 import com.example.firstProject.entity.Article;
 import com.example.firstProject.entity.User;
 import com.example.firstProject.repository.ArticleRepository;
@@ -83,12 +85,19 @@ public class ArticleController {
     }
 
     @GetMapping("/articles/read/{id}")//게시판 상세조회
-    public String read(@PathVariable Long id, Model model){
-        //회원정보를 model에 저장
-        articleRepository.updateView(id);
+    public String read(@PathVariable Long id, @LoginUser UserSessionDto user, Model model){
 
-        model.addAttribute("posts" ,articleRepository.findById(id).get());//가져와서 .get을 안붙이면 사용이 안되요 ㅠㅠ
+        Article article =articleRepository.findById(id).get();
+
+
+        if (article.getUsername().equals(user.getUsername())){
+            model.addAttribute("writer",true);
+        }
+
+        model.addAttribute("posts" ,article);//가져와서 .get을 안붙이면 사용이 안되요 ㅠㅠ
         log.info(articleRepository.findById(id).toString());
+
+        articleRepository.updateView(id);//조회수 증가
         return "/articles/read";
     }
 
@@ -116,7 +125,7 @@ public class ArticleController {
     @PostMapping("/articles/updateAction")//게시판 수정
     public String updateAction(ArticleForm form){
 
-        Article article = form.toUpdateEntity();
+        Article article = form.toEntity();
         log.info(article.toString());
         articleRepository.save(article);
 
