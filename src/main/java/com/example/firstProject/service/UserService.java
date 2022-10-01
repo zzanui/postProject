@@ -36,8 +36,7 @@ public class UserService {
 
     //    아이디를 이용해 db에서 검색 후 비밀번호 또한 같을 경우 회원반납 아닐경우 null
     public User loginService(UserDto dto) {
-        User user = userRepository.findById(dto.getUsername()).get();//get()함수는 인자값을 가져온다
-
+        User user = userRepository.findByUsername(dto.getUsername()).get();//get()함수는 인자값을 가져온다
         if (encoder.matches(user.getPassword(), dto.getPassword())) {//비밀번호 비교
             return user;
         } else {
@@ -87,9 +86,14 @@ public class UserService {
     /* 회원수정 (dirty checking) */
     @Transactional
     public void modify(UserRequestDto dto) {
+        System.out.println("해당 회원이 존재하는지 확인해보자.");
 
-        User user = userRepository.findById(dto.toEntity().getId().toString()//이거 제대로 확인 해야될듯?
-        ).orElseThrow(() -> new IllegalArgumentException("해당 회원이 존재하지 않습니다."));
+        System.out.println(dto.toEntity().getId());
+
+        User user = userRepository.findById(dto.toEntity().getId()//이거 제대로 확인 해야될듯?//에러 시발
+        ).orElseThrow(() -> new IllegalArgumentException("해당 회원이 존재하지 않습니다."));//값이 없다면 에러를 발생
+
+        System.out.println("해당 회원이 존재하지 않습니다.");
 
         String encPassword = encoder.encode(dto.getPassword());
         user.modify(dto.getNickname(), encPassword);

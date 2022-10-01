@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.Optional;
 
 
-public interface UserRepository extends JpaRepository<User, String> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByUsername(@Param("username") String username);
 
@@ -23,6 +23,7 @@ public interface UserRepository extends JpaRepository<User, String> {
 
     /* OAuth */
     Optional<User> findByEmail(String email);
+
 }
 
 

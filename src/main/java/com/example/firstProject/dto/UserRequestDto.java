@@ -1,5 +1,6 @@
 package com.example.firstProject.dto;
 
+import com.example.firstProject.entity.Role;
 import com.example.firstProject.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,13 +28,17 @@ public class UserRequestDto {
     @NotBlank(message = "이메일은 필수 입력 값입니다.")
     private String email;
 
+    private Role role;
+
+
     public User toEntity() {
         User user = User.builder()
-                .id(null)
+                .id(id)
                 .username(username)
                 .password(password)
                 .nickname(nickname)
                 .email(email)
+                .role(role.USER)
                 .build();
         return user;
 

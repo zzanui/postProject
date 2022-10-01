@@ -2,9 +2,10 @@
 
 <div id="posts_list">
     <div class="container col-md-4">
-        <form><label for="id"></label> <input type="hidden" id="id" value="{{userDto.username}}"/>
+        <form><label for="id"></label>
+            <input type="hidden" id="id" value="{{userDto.id}}"/>
 
-<!--            <input type="hidden" id="id" value="{{userDto.modifiedDate}}"/>-->
+            <input type="hidden" id="id" value="{{userDto.modifiedDate}}"/>
 
             <div class="form-group"><label for="username">아이디</label> <input type="text" id="username"
                                                                              value="{{userDto.username}}"
@@ -20,7 +21,7 @@
                                                                           value="{{userDto.email}}" class="form-control"
                                                                           readonly/></div>
         </form>
-        <button id="btn-modify" class="btn btn-dark bi bi-check-lg" > 완료</button>
+        <button id="btn-user-modify" class="btn btn-dark bi bi-check-lg" > 완료</button>
         <a href="/" role="button" class="btn btn-Secondary bi bi-arrow-return-left"> 목록</a></div>
 </div>
 
