@@ -22,7 +22,7 @@ public class CommentService {
 
     /*생성*/
     @Transactional
-    public Long commentSave(String nickname, Long id, CommentDto.Request dto){
+    public Long commentSave(String nickname, Long id, CommentDto.Request dto) {
         User user = userRepository.findByNickname(nickname);
         Article article = articleRepository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("댓글 쓰기 실패 : 해당 게시물이 존재하지 않습니다." + id));
@@ -34,6 +34,18 @@ public class CommentService {
         commentRepository.save(comment);
 
         return dto.getId();
+    }
 
+    /* UPDATE */
+    @Transactional
+    public void update(Long id, CommentDto.Request dto) {
+        Comment comment = commentRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 댓글이 존재하지 않습니다. " + id));
+        comment.update(dto.getComment());
+    }        /* DELETE */
+
+    @Transactional
+    public void delete(Long id) {
+        Comment comment = commentRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 댓글이 존재하지 않습니다. id=" + id));
+        commentRepository.delete(comment);
     }
 }

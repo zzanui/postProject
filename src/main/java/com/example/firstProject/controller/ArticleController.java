@@ -91,13 +91,14 @@ public class ArticleController {
     @GetMapping("/articles/read/{id}")//게시판 상세조회
     public String read(@PathVariable Long id, @LoginUser UserSessionDto user, Model model){
 
+        //게시글 변수
         Article article =articleRepository.findById(id).get();//가져와서 .get을 안붙이면 사용이 안되요 ㅠㅠ
 
-
+        //댓글 변수
         ArticleResponseDto dto = new ArticleResponseDto(article);
         List<CommentDto.Response> comments = dto.getComments();
 
-        System.out.println("코멘트1");
+
 
         /*댓글 관련*/
         if(comments != null && !comments.isEmpty()){
