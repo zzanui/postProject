@@ -7,6 +7,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Entity
@@ -40,6 +41,10 @@ public class Article {
 
     @Column(columnDefinition = "integer default 0", nullable = false)
     private Integer view;
+
+    @OneToMany(mappedBy = "article",fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
+    @OrderBy("id asc")// 댓글 정렬
+    private List<Comment> comments;
 
 }
 

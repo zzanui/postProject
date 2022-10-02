@@ -39,21 +39,8 @@ public class ArticleForm {
                 .build();
 
         return article;
-//        return new Article(null, title, content,username,nickName,null,0);
     }
-//    public Article toUpdateEntity() {
-//        Article article = Article.builder()
-//                .id(id)
-//                .title(title)
-//                .content(content)
-//                .username(username)
-//                .nickname(nickname)
-//                .timestamp(null)
-//                .view(0)
-//                .build();
-//        return article;
-//        return new Article(id, title, content,username,nickname,null,0);
-//      }
+
 
 
 }

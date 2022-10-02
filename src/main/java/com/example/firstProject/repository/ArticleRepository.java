@@ -1,5 +1,6 @@
 package com.example.firstProject.repository;
 
+import com.example.firstProject.dto.ArticleForm;
 import com.example.firstProject.entity.Article;
 import org.springframework.data.domain.Page;
 
@@ -20,6 +21,8 @@ public interface ArticleRepository extends JpaRepository<Article,Long> {
     @Query
     Page<Article> findByTitleContaining(@Param("keyword") String keyword, Pageable pageable);
     //Containing를 붙이면 like가 가능해진다
+
+
 
     @Transactional//업데이트문 사용시 필요
     @Modifying

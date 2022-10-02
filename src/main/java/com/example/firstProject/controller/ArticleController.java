@@ -2,8 +2,11 @@ package com.example.firstProject.controller;
 
 import com.example.firstProject.annotation.LoginUser;
 import com.example.firstProject.dto.ArticleForm;
+import com.example.firstProject.dto.ArticleResponseDto;
+import com.example.firstProject.dto.CommentDto;
 import com.example.firstProject.dto.UserSessionDto;
 import com.example.firstProject.entity.Article;
+import com.example.firstProject.entity.Comment;
 import com.example.firstProject.entity.User;
 import com.example.firstProject.repository.ArticleRepository;
 
@@ -22,6 +25,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 
 @Controller
@@ -88,17 +92,28 @@ public class ArticleController {
     public String read(@PathVariable Long id, @LoginUser UserSessionDto user, Model model){
 
         Article article =articleRepository.findById(id).get();//가져와서 .get을 안붙이면 사용이 안되요 ㅠㅠ
+
+
+        ArticleResponseDto dto = new ArticleResponseDto(article);
+        List<CommentDto.Response> comments = dto.getComments();
+
+        System.out.println("코멘트1");
+
+        /*댓글 관련*/
+        if(comments != null && !comments.isEmpty()){
+            model.addAttribute("comments",comments);
+        }
+
+        /*사용자 관련*/
         if (user != null) {
             model.addAttribute("usernickname", user.getNickname());
-
+            /*게시글 작성자 본인인지 확인*/
             if (article.getUsername().equals(user.getUsername())){
                 model.addAttribute("writer",true);
             }
         }
 
         model.addAttribute("posts" ,article);
-        log.info(articleRepository.findById(id).toString());
-
         articleRepository.updateView(id);//조회수 증가
         return "/articles/read";
     }
