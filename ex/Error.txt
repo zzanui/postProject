@@ -19,7 +19,7 @@
 5: 출처 https://stackoverflow.com/questions/61029340/spring-security-redirects-to-page-with-status-code-999/61029341
 
 6. db에 성공적으로 저장이 되는데 에러가 뜬다는 에러발생 "{"readyState":4,"responseText":"","status":200,"statusText":"parsererror"}"
- 해결 :  ajax의 dataType을 생략했더니 해결되었다.
+ 해결 :  ajax의 dataType을 생략했더니 해결되었다.(405에러또한 문제가 없어서 문제였는데 같은 방법으로 해결)
 
 22.09.26 modifiedDate가 addAttribute에 안들어간다 이걸 들어가게 하고 시작하자
 22.09.28 로그인하면 게시판 글이 안보임

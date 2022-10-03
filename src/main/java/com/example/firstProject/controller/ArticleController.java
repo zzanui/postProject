@@ -112,6 +112,14 @@ public class ArticleController {
             if (article.getUsername().equals(user.getUsername())){
                 model.addAttribute("writer",true);
             }
+
+            /*댓글 작성자 본인인지 확인*/
+            for (int i = 0 ; i < comments.size(); i++){
+                //댓글작성자 id와 현재 유저 id가 같은지 확인(True,False)
+                boolean isWriter = comments.get(i).getUserId().equals(user.getId());
+                model.addAttribute("isWriter",isWriter);
+            }
+
         }
 
         model.addAttribute("posts" ,article);

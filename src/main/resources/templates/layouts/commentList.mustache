@@ -12,12 +12,14 @@
                     <span style="font-size: small">{{nickname}}</span>
                     <span style="font-size: xx-small">{{createdDate}}</span>
                 </span>
-                &nbsp;
+
+                {{!#isWriter}}{{!현재 사용자와 댓글작성자가 같은경우 표시}}
                 <a type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse-{{id}}"
                    class="bi bi-pencil-square"></a>{{! 댓글 수정 버튼 }}
 
-                <a type="button" onclick="main.commentDelete({{articleId}},{{id}})"
+                <a type="button" onclick="main.commentDelete({{articleId}},{{id}},{{userId}},{{#user.id}}{{user.id}}{{/user.id}})"
                    class="bi bi-x-square"></a> {{! 댓글 삭제 버튼 }}
+                {{!/isWriter}}
 
                 {{! 댓글 내용 }}
                 <p class="collapse multi-collapse-{{id}} show">{{comment}}</p>
@@ -27,6 +29,8 @@
                 <form class="collapse multi-collapse-{{id}}">
                     <input type="hidden" id="id" value="{{id}}">
                     <input type="hidden" id="postsId" value="{{articleId}}">
+                    <input type="hidden" id="writerUserId" value="{{userId}}">
+                    <input type="hidden" id="sessionUserId" value="{{#user}}{{user.id}}{{/user}}">
                     <div class="form-group">
                         <textarea class="form-control" id="comment-content" rows="3">{{comment}}</textarea>
                     </div>

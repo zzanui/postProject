@@ -191,16 +191,16 @@ const main = {
             id: form.querySelector('#id').value,
             postsId: form.querySelector('#postsId').value,
             comment: form.querySelector('#comment-content').value,
-//            writerUserId: form.querySelector('#writerUserId').value,
-//            sessionUserId: form.querySelector('#sessionUserId').value
+            writerUserId: form.querySelector('#writerUserId').value,
+            sessionUserId: form.querySelector('#sessionUserId').value
         }
-//        console.log("commentWriterID : " + data.writerUserId);
-//        console.log("sessionUserID : " + data.sessionUserId);
+        console.log("commentWriterID : " + data.writerUserId);
+        console.log("sessionUserID : " + data.sessionUserId);
 
-//        if (data.writerUserId !== data.sessionUserId) {
-//            alert("본인이 작성한 댓글만 수정 가능합니다.");
-//            return false;
-//        }
+        if (data.writerUserId !== data.sessionUserId) {
+            alert("본인이 작성한 댓글만 수정 가능합니다.");
+            return false;
+        }
 
         if (!data.comment || data.comment.trim() === "") {
             alert("공백 또는 입력하지 않은 부분이 있습니다.");
