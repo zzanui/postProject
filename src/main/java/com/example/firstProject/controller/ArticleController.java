@@ -38,7 +38,7 @@ public class ArticleController {
 
     @GetMapping("/")
     public String main(){
-        return "/articles/index";
+        return "articles/index";
     }
 
 
@@ -124,7 +124,7 @@ public class ArticleController {
 
         model.addAttribute("posts" ,article);
         articleRepository.updateView(id);//조회수 증가
-        return "/articles/read";
+        return "articles/read";
     }
 
     @GetMapping("/articles/noteDelete/{id}")//조회한 게시판 삭제
@@ -144,7 +144,7 @@ public class ArticleController {
         //회원정보를 model에 저장
         model.addAttribute("posts" ,articleRepository.findById(id).get());//가져와서 .get을 안붙이면 사용이 안되요 ㅠㅠ
         log.info(articleRepository.findById(id).toString());
-        return "/articles/noteUpdate";
+        return "articles/noteUpdate";
 
     }
 
@@ -173,7 +173,7 @@ public class ArticleController {
 
 
 
-        return "/articles/search";
+        return "articles/search";
 
     }
 }

@@ -86,7 +86,7 @@ public class UserController {
         model.addAttribute("exception", exception);
         System.out.println(exception);
 
-        return "/articles/login";
+        return "articles/login";
     }
 
 
@@ -95,7 +95,7 @@ public class UserController {
 
 
         if (bindingResult.hasErrors()) {
-            return "/articles/login";
+            return "articles/login";
         }
         //아이디랑 비밀번호을 찾아 select 실행
         User loginUser = userService.loginService(userDto);
@@ -104,7 +104,7 @@ public class UserController {
         if (loginUser == null) {//계정이 존재하지 않을경우//로그인 실패
             bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
             System.out.println("아이디 또는 비밀번호가 맞지 않습니다.");
-            return "/articles/login";//로그인페이지로 이동
+            return "articles/login";//로그인페이지로 이동
         }
 
         //로그인 성공
@@ -136,7 +136,7 @@ public class UserController {
 
             System.out.println(userDto.toString());
         }
-        return "/articles/user-modify";
+        return "articles/user-modify";
     }
 }
 
