@@ -41,7 +41,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         OAuthAttributes attributes = OAuthAttributes.of(registrationId, userNameAttributeName, oAuth2User.getAttributes());
         User user = saveOrUpdate(attributes);
         /* 세션 정보를 저장하는 직렬화된 dto 클래스*/
-        session.setAttribute("user", new UserSessionDto(user));
+        session.setAttribute("playUser", new UserSessionDto(user));
         return new DefaultOAuth2User(Collections.singleton(new SimpleGrantedAuthority(user.getRoleValue())), attributes.getAttributes(), attributes.getNameAttributeKey());
     }     /* 소셜로그인시 기존 회원이 존재하면 수정날짜 정보만 업데이트해 기존의 데이터는 그대로 보존 */
 

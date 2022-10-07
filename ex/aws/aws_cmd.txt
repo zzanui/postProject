@@ -1,0 +1,37 @@
+EC2ip : http://3.39.210.165/
+
+EC2 접근
+cd D:\backup\study\spring\Free-Spo\ex\aws
+ssh -i "testKey.pem" ubuntu@ec2-3-39-210-165.ap-northeast-2.compute.amazonaws.com
+
+실행 : java -jar .ssh/firstProject-0.0.1-SNAPSHOT.jar
+백그라운드 실행 : nohup java -jar .ssh/firstProject-0.0.1-SNAPSHOT.jar &
+
+종료 : ps -ef | grep java
+	kill -9 [프로세스 번호]
+파일 옮기기
+1. D:\backup\study\spring\Free-Spo\build\libs
+2. git bash 키기
+3.(scp -i [pem파일경로] [업로드할 파일 이름] [ec2-user계정명]@[ec2 instance의 public DNS]:~/[경로])
+	$ scp -i "D:\backup\study\spring\Free-Spo\ex\aws\testKey.pem" firstProject-0.0.1-SNAPSHOT.jar ubuntu@ec2-3-39-210-165.ap-northeast-2.compute.amazonaws.com:~/.ssh
+
+
+RDS
+인스턴트식별자 : notepg
+마스터이름 : admin
+마스터암호 : rladms1!1!
+추가구성 : notepg
+엔드포인트 : notepg.crqcswzpjyt1.ap-northeast-2.rds.amazonaws.com
+
+--사실상 안씀--
+Mysql
+엔드포인트 : notepg.crqcswzpjyt1.ap-northeast-2.rds.amazonaws.com
+userID : test
+userPW : test1234
+
+create user 'test'@'localhost' identified by 'test1234';
+
+
+8080포트 죽이기
+1. netstat -a -o
+2. taskkill /f /pid PID번호

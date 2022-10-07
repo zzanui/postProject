@@ -5,8 +5,8 @@
 <form class="container" action="/articles/create" method="post">
     <!--csrf-->
    <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
-    <input type="hidden" name="nickname" value="{{user.nickname}}"/>
-    <input type="hidden" name="username" value="{{user.username}}"/>
+    <input type="hidden" name="nickname" value="{{playUser.nickname}}"/>
+    <input type="hidden" name="username" value="{{playUser.username}}"/>
 
     <div class="mb-3 mt-4">
         <label class="form-label">제목</label>

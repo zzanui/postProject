@@ -22,7 +22,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         User user = userRepository.findByUsername(username).orElseThrow(() ->
                 new UsernameNotFoundException("해당 사용자가 존재하지 않습니다. : " + username));
 
-        session.setAttribute("user", new UserSessionDto(user));
+        session.setAttribute("playUser", new UserSessionDto(user));
 
         /* 시큐리티 세션에 유저 정보 저장 */
         return new CustomUserDetails(user);

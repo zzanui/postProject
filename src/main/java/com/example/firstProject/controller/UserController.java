@@ -99,7 +99,7 @@ public class UserController {
         }
         //아이디랑 비밀번호을 찾아 select 실행
         User loginUser = userService.loginService(userDto);
-        System.out.println("LoginAction");
+        System.out.println("LoginAction / 로그인 액션");
 
         if (loginUser == null) {//계정이 존재하지 않을경우//로그인 실패
             bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
@@ -110,7 +110,7 @@ public class UserController {
         //로그인 성공
 
         //쿠키에 시간 정보를 주지 않으면 세션 쿠기(브라우저 종료시 모두 종료)
-        session.setAttribute("user", userDto);
+        session.setAttribute("playUser", userDto);
         System.out.println("로그인 성공.");
         return "redirect:/";//메인화면으로 이동
     }

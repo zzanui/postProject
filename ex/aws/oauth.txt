@@ -1,0 +1,9 @@
+google 
+
+id : 288618608052-tgqco97ols579fhgq675db4s37e15fjb.apps.googleusercontent.com
+pw : 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
+
+naver
+ 
+id : eLByxNU5CZEfxT69X1lA
+pw : waM6Pd00jU

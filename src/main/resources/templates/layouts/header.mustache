@@ -11,17 +11,17 @@
                     <a class="nav-link" href="/articles/note">게시판</a>
                 </li>
                 <!--  로그인이 되어있지 않을경우   -->
-                {{^user}}
+                {{^playUser}}
                     <li class="nav-item">
                         <a class="nav-link" href="/articles/login">로그인</a>
                     </li>
 
-                {{/user}}
+                {{/playUser}}
                 <!--  로그인이 되어있을 경우   -->
-                {{#user}}
+                {{#playUser}}
                     <li class="nav-item dropdown text-right">
                         <a class=" text-light dropdown-toggle" data-bs-toggle="dropdown" href="#"
-                           role="button" aria-expanded="false">{{user.nickname}}님 안녕하세요!</a>
+                           role="button" aria-expanded="false">{{playUser.nickname}}님 안녕하세요!</a>
                         <ul class="dropdown-menu dropdown-menu-dark">
                             <li class="nav-item">
                                 <a class="nav-link" href="/articles/logout">로그아웃</a>
@@ -32,7 +32,7 @@
                         </ul>
                     </li>
 
-                {{/user}}
+                {{/playUser}}
 
             </ul>
             <form class="d-flex" action="/articles/search" method="GET" role="search">

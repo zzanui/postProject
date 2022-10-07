@@ -17,7 +17,7 @@
                 <a type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse-{{id}}"
                    class="bi bi-pencil-square"></a>{{! 댓글 수정 버튼 }}
 
-                <a type="button" onclick="main.commentDelete({{articleId}},{{id}},{{userId}},{{#user.id}}{{user.id}}{{/user.id}})"
+                <a type="button" onclick="main.commentDelete({{articleId}},{{id}},{{userId}},{{#playUser.id}}{{playUser.id}}{{/playUser.id}})"
                    class="bi bi-x-square"></a> {{! 댓글 삭제 버튼 }}
                 {{!/isWriter}}
 
@@ -30,7 +30,7 @@
                     <input type="hidden" id="id" value="{{id}}">
                     <input type="hidden" id="postsId" value="{{articleId}}">
                     <input type="hidden" id="writerUserId" value="{{userId}}">
-                    <input type="hidden" id="sessionUserId" value="{{#user}}{{user.id}}{{/user}}">
+                    <input type="hidden" id="sessionUserId" value="{{#playUser}}{{playUser.id}}{{/playUser}}">
                     <div class="form-group">
                         <textarea class="form-control" id="comment-content" rows="3">{{comment}}</textarea>
                     </div>
