@@ -16,8 +16,6 @@ ___
 * [프로젝트 기능](#프로젝트-기능)
 * [사용기술](#사용기술)
 * [실행화면](#실행화면)
-* [구조 및 설계](#구조-및-설명)
-* [패키지 구조](#패키지-구조)
 * [DB 설계](#DB-설계)
 * [프로젝트 보완사항](#프로젝트-보완사항)
 * [후기](#후기)
@@ -56,6 +54,43 @@ SpringBoot에 대해 아는 것 하나 없이 순전히 독학으로 만들어�
   * JavaScript
   * Mustache
   * Bootstrap 5.1.3
+
+
+
+## DB 설계
+
+**1. 게시글**
+|제목|데이터 타입|조건|설명|
+|------|---|---|---|
+|id|Long|PK|고유번호|
+|title|varchar|NOT NULL|제목|
+|content|varchar|NOT NULL|내용|
+|nickName|varchar|NOT NULL|닉네임|
+|timestamp|varchar|NOT NULL|생성일|
+|view|int|NOT NULL|조회수|
+
+
+**2. 사용자**
+|제목|데이터 타입|조건|설명|
+|------|---|---|---|
+|Id|Long|PK|고유번호|
+|username|varchar|NOT NULL / UNIQUE|아이디|
+|nickname|varchar|NOT NULL / UNIQUE|닉네임|
+|password|varchar|NOT NULL|비밀번호|
+|email|varchar|NOT NULL / UNIQUE|이메일|
+|create_date|varchar|NOT NULL|생성시간|
+|modified_date|varchar|NOT NULL|수정시간|
+
+
+**3. 댓글**
+|제목|데이터 타입|조건|설명|
+|------|---|---|---|
+|Id|Long|PK|고유번호|
+|comment|varchar|NOT NULL|내용|
+|createdDate|varchar|NOT NULL|생성시간|
+|modifiedDate|varchar|NOT NULL|수정시간|
+|article|varchar|NOT NULL / UNIQUE|게시글 번호|
+|user|varchar|NOT NULL|작성자 번호|
   
   
 ## 실행화면
@@ -92,40 +127,18 @@ ___
 
 
 
-## DB 설계
-**1. 게시글**
-|제목|데이터 타입|조건|설명|
-|------|---|---|---|
-|id|Long|PK|고유번호|
-|title|varchar|NOT NULL|제목|
-|content|varchar|NOT NULL|내용|
-|nickName|varchar|NOT NULL|닉네임|
-|timestamp|varchar|NOT NULL|생성일|
-|view|int|NOT NULL|조회수|
 
-
-**2. 사용자**
-|제목|데이터 타입|조건|설명|
-|------|---|---|---|
-|Id|Long|PK|고유번호|
-|username|varchar|NOT NULL / UNIQUE|아이디|
-|nickname|varchar|NOT NULL / UNIQUE|닉네임|
-|password|varchar|NOT NULL|비밀번호|
-|email|varchar|NOT NULL / UNIQUE|이메일|
-|create_date|varchar|NOT NULL|생성시간|
-|modified_date|varchar|NOT NULL|수정시간|
-
-
-**3. 댓글**
-|제목|데이터 타입|조건|설명|
-|------|---|---|---|
-|Id|Long|PK|고유번호|
-|comment|varchar|NOT NULL|내용|
-|createdDate|varchar|NOT NULL|생성시간|
-|modifiedDate|varchar|NOT NULL|수정시간|
-|article|varchar|NOT NULL / UNIQUE|게시글 번호|
-|user|varchar|NOT NULL|작성자 번호|
 
 
 ## 프로젝트 보완사항
+처음에 "분석 및 설계" 체계적으로 진행되지 않아 중간에 수정사항이 생길때마다 여러개의 코드를 수정해야되는 경우가 많았다
+또한 그에 관해 개인적으로 코드가 굉장히 수정할 점이 많은 것 같다. 특히 똑같은 내용의 코드가 중복되는 경우가 있다
+ui도 굉장히 허접하다 특히 header부분에 로그인을 하였을 경우 순서가 불편하다
+생각만 해놓고 구현 못한 기능또한 많다 예를 들어 아이디,비밀번호 찾기와 OAuth2 구글,네이버 로그인이 있다
+DB를 설계하는데 join을 사용해야 되는 구간에 사용하지 못하였다
+
 ## 후기
+혼자 독학하면 진행한 프로젝트이므로 아쉬운 부분도 많으며 개선해야할 점도 많다.
+시작하기 전에는 저는 게시판이라는 것을 굉장히 얕보고 있었습니다.
+하지만 프로젝트를 진행하게 되면서 사람들이 왜 게시판을 한번 만들어봐라 라고 하였는지 알게 되었습니다.
+아직 타인에게 당당하게 보여줄만한 코드는 아니라고 생각하지만 현제의 제 자신이 만들 수 있는 절대 대충하지 않았다고 생각합니다.
