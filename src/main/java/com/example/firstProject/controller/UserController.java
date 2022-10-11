@@ -8,6 +8,7 @@ import com.example.firstProject.entity.User;
 import com.example.firstProject.validate.CheckEmailValidator;
 import com.example.firstProject.validate.CheckNicknameValidator;
 import com.example.firstProject.validate.CheckUsernameValidator;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -28,7 +29,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Map;
 
-
+@Slf4j
 @Controller
 public class UserController {
 
@@ -82,9 +83,9 @@ public class UserController {
                         @RequestParam(value = "exception", required = false) String exception,
                         Model model) {
         model.addAttribute("error", error);
-        System.out.println(error);
+        System.out.println("error : " + error);
         model.addAttribute("exception", exception);
-        System.out.println(exception);
+        System.out.println("exception : " + exception);
 
         return "articles/login";
     }
@@ -104,6 +105,7 @@ public class UserController {
         if (loginUser == null) {//계정이 존재하지 않을경우//로그인 실패
             bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
             System.out.println("아이디 또는 비밀번호가 맞지 않습니다.");
+            session.invalidate();//모든세션 삭제
             return "articles/login";//로그인페이지로 이동
         }
 

@@ -3,9 +3,12 @@ package com.example.firstProject.validate;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
@@ -16,6 +19,8 @@ import java.net.URLEncoder;
 
 @Component
 public class CustomAuthFailureHandler extends SimpleUrlAuthenticationFailureHandler {
+
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
                                         AuthenticationException exception) throws IOException, ServletException {
@@ -33,8 +38,9 @@ public class CustomAuthFailureHandler extends SimpleUrlAuthenticationFailureHand
         }
         //한글이 안되므로 UTF-8로 변환
         errorMessage = URLEncoder.encode(errorMessage, "UTF-8");
-
         setDefaultFailureUrl("/articles/login?error=true&exception=" + errorMessage);
         super.onAuthenticationFailure(request, response, exception);
+
+        new SecurityContextLogoutHandler().logout(request, response, auth);//로그아웃//정상적인 해결법은 아님
     }
 }

@@ -7,20 +7,17 @@
     <div class="container">
         <div class="mb-3 mt-4">
             <label class="form-label">제목</label>
-            <input type="text" class="form-control" name="title" readonly
-                   value={{title}}>
+            <label type="text" class="form-control" name="title" >{{title}}</label>
         </div>
 
         <div class="mb-3">
             <label class="form-label">내용</label>
-            <input style="line-height: 50em;" type="text" class="form-control" name="content" readonly
-                   value={{content}}>
-
+            <label style="line-height: 50em;" type="text" class="form-control" name="content" > {{content}}</label>
         </div>
 {{/posts}}
 {{#writer}}
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <a href="/" class="btn btn-dark"> 목록</a>
+        <div class="d-grid gap-2 d-md-flex ">
+            <a href="/" class="btn btn-dark">목록</a>
             <a href="/articles/noteUpdate/{{id}}" class="btn btn-dark ">수정</a>
             <a href="/articles/noteDelete/{{id}}" class="btn btn-dark ">삭제</a>
         </div>

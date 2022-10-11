@@ -38,7 +38,9 @@ public class ArticleController {
 
     @GetMapping("/")
     public String main(){
-        return "articles/index";
+
+//        return "articles/index";
+        return  "redirect:/articles/note";//메인화면 만들기 귀찮아서 그냥 게시판으로 바로 연결
     }
 
 
