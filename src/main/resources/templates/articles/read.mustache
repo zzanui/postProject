@@ -12,14 +12,14 @@
 
         <div class="mb-3">
             <label class="form-label">내용</label>
-            <label style="line-height: 50em;" type="text" class="form-control" name="content" > {{content}}</label>
+            <label type="text" class="form-control" rows="10" name="content" > {{content}}</label>
         </div>
 {{/posts}}
 {{#writer}}
         <div class="d-grid gap-2 d-md-flex ">
             <a href="/" class="btn btn-dark">목록</a>
-            <a href="/articles/noteUpdate/{{id}}" class="btn btn-dark ">수정</a>
-            <a href="/articles/noteDelete/{{id}}" class="btn btn-dark ">삭제</a>
+            <a href="/articles/noteUpdate/{{id}}" class="btn btn-dark">수정</a>
+            <a href="/articles/noteDelete/{{id}}" class="btn btn-dark">삭제</a>
         </div>
 {{/writer}}
 
